@@ -17,8 +17,8 @@ class ClienteSeeder extends Seeder
             'nome' => 'Cliente Exemplo',
             'endereco' => 'Rua Exemplo, 123',
             'telefone' => '11999999999999',
-            'cpf' => '12345678912',
-            'email' => 'cliente@exemple.com',
+            'cpf' => '123456789125',
+            'email' => 'clientes@exemple.com',
             'senha' => bcrypt('senha123'),
         ]);
 
@@ -26,8 +26,8 @@ class ClienteSeeder extends Seeder
             'nome' => 'Renata Silva',
             'endereco' => 'Rua Armando Silva, 765',
             'telefone' => '11999999999999',
-            'cpf' => '187654569',
-            'email' => 'renata@exemple.com',
+            'cpf' => '1876545699',
+            'email' => 'renataa@exemple.com',
             'senha' => bcrypt('senha098'),
         ]);
     }
