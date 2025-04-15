@@ -1,10 +1,11 @@
 <?php
 
+use App\Http\Livewire\Produtos\ProdutoCreate as ProdutosProdutoCreate;
 use App\Livewire\Produto\ProdutoCreate;
 use App\Livewire\Produto\ProdutoEdit;
 use App\Livewire\Produto\ProdutoIndex;
 use App\Livewire\Produto\ProdutoShow;
-use Illuminate\Routing\Route as RoutingRoute;
+
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('clientes')->group(function(){

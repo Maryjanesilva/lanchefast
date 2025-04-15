@@ -1,127 +1,82 @@
-<!-- resources/views/livewire/clientes/create.blade.php -->
-
-<style>
-    body {
-        background: url('/images/bg-kraft-paper.jpg'); /* textura kraft estilo embalagem */
-        background-size: cover;
-        font-family: 'Comic Sans MS', cursive, sans-serif;
-    }
-
-    .card-lanchonete {
-        background: linear-gradient(135deg, #fff3cd, #ffecb3);
-        border: 3px dashed #ff9800;
-        border-radius: 20px;
-        box-shadow: 0 8px 15px rgba(0,0,0,0.3);
-    }
-
-    .card-header-lanchonete {
-        background: #ff5722;
-        color: white;
-        border-top-left-radius: 20px;
-        border-top-right-radius: 20px;
-        font-size: 1.5rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-    }
-
-    .form-control-lanchonete {
-        border: 2px solid #ffb74d;
-        border-radius: 15px;
-        font-size: 1rem;
-    }
-
-    .btn-lanchonete {
-        background: #ff9800;
-        border: none;
-        border-radius: 15px;
-        font-size: 1.2rem;
-        font-weight: bold;
-        transition: 0.3s ease;
-    }
-
-    .btn-lanchonete:hover {
-        background: #f57c00;
-        color: white;
-    }
-
-    .emoji-label {
-        font-size: 1.2rem;
-        margin-right: 5px;
-    }
-</style>
-
-<div class="container mt-5 mb-5">
-    <div class="row justify-content-center">
-        <div class="col-md-7">
-            <div class="card card-lanchonete">
-                <div class="card-header card-header-lanchonete">
-                    <i class="fas fa-hamburger"></i> Cadastrar Cliente 🍔🥤
-                </div>
-
-                <div class="card-body p-4">
-                    @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul class="mb-0">
-                                @foreach ($errors->all() as $error)
-                                    <li>❌ {{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
-
-                    <form wire:submit.prevent="store">
-                        @csrf
-
-                        <div class="mb-3">
-                            <label for="name" class="form-label text-danger"><span class="emoji-label">🧑‍🍳</span>Nome</label>
-                            <input type="text" class="form-control form-control-lanchonete" id="name" wire:model="name" placeholder="Digite o nome do cliente" required>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="address" class="form-label text-danger"><span class="emoji-label">🏠</span>Endereço</label>
-                            <input type="text" class="form-control form-control-lanchonete" id="address" wire:model="address" placeholder="Digite o endereço do cliente" required>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="phone" class="form-label text-danger"><span class="emoji-label">📞</span>Telefone</label>
-                            <input type="text" class="form-control form-control-lanchonete" id="phone" wire:model="phone" placeholder="Digite o telefone" required>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="cpf" class="form-label text-danger"><span class="emoji-label">🪪</span>CPF</label>
-                            <input type="text" class="form-control form-control-lanchonete" id="cpf" wire:model="cpf" placeholder="Digite o CPF" required>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="email" class="form-label text-danger"><span class="emoji-label">📧</span>E-mail</label>
-                            <input type="email" class="form-control form-control-lanchonete" id="email" wire:model="email" placeholder="Digite o e-mail" required>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="password" class="form-label text-danger"><span class="emoji-label">🔐</span>Senha</label>
-                            <input type="password" class="form-control form-control-lanchonete" id="password" wire:model="password" placeholder="Digite a senha" required>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="password_confirmation" class="form-label text-danger"><span class="emoji-label">🔁</span>Confirmar Senha</label>
-                            <input type="password" class="form-control form-control-lanchonete" id="password_confirmation" wire:model="password_confirmation" placeholder="Confirme a senha" required>
-                        </div>
-
-                        <button type="submit" class="btn btn-lanchonete w-100 mt-3">
-                            🍟 Cadastrar Cliente
-                        </button>
-                    </form>
-                </div>
+<div class="min-h-screen bg-[#fef6e4] py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-lg mx-auto">
+        <div class="bg-white border-4 border-[#fbbf24] rounded-2xl shadow-xl overflow-hidden">
+            <!-- Cabeçalho -->
+            <div class="bg-gradient-to-r from-[#f97316] to-[#fbbf24] p-6 text-center">
+                <h2 class="text-3xl font-extrabold text-white tracking-wide">🍔 Cadastro de Cliente</h2>
+                <p class="text-white text-sm mt-1">Complete com seus dados e aproveite os lanches!</p>
             </div>
 
-            @if (session()->has('message'))
-                <div class="alert alert-success mt-3 text-center">
-                    🎉 {{ session('message') }}
+            <!-- Formulário -->
+            <form wire:submit.prevent="store" class="p-8 space-y-6">
+                @if (session()->has('message'))
+                    <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 rounded shadow-sm">
+                        ✅ {{ session('message') }}
+                    </div>
+                @endif
+
+                <!-- Nome -->
+                <div>
+                    <label for="nome" class="block text-sm font-semibold text-[#78350f]">Nome</label>
+                    <input wire:model="nome" id="nome" type="text"
+                        class="mt-1 w-full rounded-lg border border-amber-300 shadow-sm focus:border-orange-400 focus:ring-orange-400"
+                        placeholder="Ex: João Lancheiro">
+                    @error('nome') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
                 </div>
-            @endif
+
+                <!-- Endereço -->
+                <div>
+                    <label for="endereco" class="block text-sm font-semibold text-[#78350f]">Endereço</label>
+                    <input wire:model="endereco" id="endereco" type="text"
+                        class="mt-1 w-full rounded-lg border border-amber-300 shadow-sm focus:border-orange-400 focus:ring-orange-400"
+                        placeholder="Rua do X-Salada, 456">
+                    @error('endereco') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
+                </div>
+
+                <!-- Telefone -->
+                <div>
+                    <label for="telefone" class="block text-sm font-semibold text-[#78350f]">Telefone</label>
+                    <input wire:model="telefone" id="telefone" type="tel"
+                        class="mt-1 w-full rounded-lg border border-amber-300 shadow-sm focus:border-orange-400 focus:ring-orange-400"
+                        placeholder="(00) 00000-0000">
+                    @error('telefone') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
+                </div>
+
+                <!-- CPF -->
+                <div>
+                    <label for="cpf" class="block text-sm font-semibold text-[#78350f]">CPF</label>
+                    <input wire:model="cpf" id="cpf" type="text"
+                        class="mt-1 w-full rounded-lg border border-amber-300 shadow-sm focus:border-orange-400 focus:ring-orange-400"
+                        placeholder="000.000.000-00">
+                    @error('cpf') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
+                </div>
+
+                <!-- Email -->
+                <div>
+                    <label for="email" class="block text-sm font-semibold text-[#78350f]">E-mail</label>
+                    <input wire:model="email" id="email" type="email"
+                        class="mt-1 w-full rounded-lg border border-amber-300 shadow-sm focus:border-orange-400 focus:ring-orange-400"
+                        placeholder="lancheiro@email.com">
+                    @error('email') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
+                </div>
+
+                <!-- Senha -->
+                <div>
+                    <label for="senha" class="block text-sm font-semibold text-[#78350f]">Senha</label>
+                    <input wire:model="senha" id="senha" type="password"
+                        class="mt-1 w-full rounded-lg border border-amber-300 shadow-sm focus:border-orange-400 focus:ring-orange-400"
+                        placeholder="*******">
+                    @error('senha') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
+                </div>
+
+                <!-- Botão -->
+                <div class="pt-4">
+                    <button type="submit"
+                        class="w-full bg-gradient-to-r from-orange-500 to-yellow-400 hover:from-orange-600 hover:to-yellow-500 text-white font-bold py-3 rounded-lg shadow-md transition duration-300">
+                        🍟 Cadastrar Cliente
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
-
